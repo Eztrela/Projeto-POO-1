@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -15,8 +18,15 @@ public class Estacionamento {
 	public void entrar(String placa, int vaga) throws Exception{
 		if( vaga - 1 > placas.length || vaga - 1 < 0 ) {
 			throw new Exception("Vaga não Existe");
-		}else if(!(placas[vaga - 1].equals(null))){
+		}else if(!(placas[vaga - 1] == null)){
 			throw new Exception("Vaga já ocupada");
+		}
+		try (FileWriter fileWriter = new FileWriter("Z:\\20221370015\\pablo\\poo\\Projeto poo 1\\src\\historico.csv", true)) {
+			LocalDateTime localDateTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			fileWriter.append("Data/Hora: "+localDateTime.format(formatter)+" Vaga: "+vaga+" Placa: "+placa+" "+" Entrada"+"\n");
+			fileWriter.flush();
+			fileWriter.close();
 		}
 		placas[vaga - 1] = placa;
 	}
@@ -26,6 +36,13 @@ public class Estacionamento {
 			throw new Exception("Vaga não Existe");
 		}else if(placas[vaga - 1].equals(null)){
 			throw new Exception("Vaga já desocupada");
+		}
+		try (FileWriter fileWriter = new FileWriter("Z:\\20221370015\\pablo\\poo\\Projeto poo 1\\src\\historico.csv", true)) {
+			LocalDateTime localDateTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			fileWriter.append("Data/Hora: "+localDateTime.format(formatter)+" Vaga: "+vaga+" Placa: "+placas[vaga-1]+" "+" Saida"+"\n");
+			fileWriter.flush();
+			fileWriter.close();
 		}
 		placas[vaga - 1] = null;
 	}
