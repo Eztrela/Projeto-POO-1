@@ -38,7 +38,15 @@ public class Estacionamento {
 		return -1;
 	}
 	
-	public void transferir(int vaga1,int vaga2) {
+	public void transferir(int vaga1,int vaga2) throws Exception {
+		if (((vaga1-1 < 0) || (vaga2-1 < 0)) || ((vaga1 - 1 > placas.length) || (vaga2 - 1 > placas.length))) {
+			throw new Exception("Vaga não Existe");
+		}else if(!(placas[vaga2 - 1].equals(null))){
+			throw new Exception("Vaga de destino já ocupada");
+		}else if(placas[vaga1 - 1].equals(null)) {
+			throw new Exception("Vaga de origem já desocupada");
+		}
+		
 		placas[vaga2 - 1] = placas[vaga1 - 1];
 		placas[vaga1 - 1] = null;
 	}
@@ -59,10 +67,14 @@ public class Estacionamento {
 		ArrayList<Integer> vagasLivres = new ArrayList<>();
 		for(int i = 0; i < placas.length ; i++) {
 			if (!(placas[i].equals(null))) {
-				vagasLivres.add(i);
+				vagasLivres.add(i+1);
 			}
 		}
 		return vagasLivres;
+	}
+	
+	public void gravarDados() {
+			
 	}
 	
 }	
