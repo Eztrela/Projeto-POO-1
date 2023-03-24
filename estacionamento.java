@@ -14,7 +14,7 @@ public class Estacionamento {
 	}
 
 	public void entrar(String placa, int vaga) throws Exception {
-		if (vaga - 1 > placas.length || vaga - 1 < 0) {
+		if (vaga - 1 >= placas.length || vaga - 1 < 0) {
 			throw new Exception("Vaga não Existe");
 		} else if (!(placas[vaga - 1] == null)) {
 			throw new Exception("Vaga já ocupada");
@@ -32,7 +32,7 @@ public class Estacionamento {
 	}
 
 	public void sair(int vaga) throws Exception {
-		if (vaga - 1 > placas.length || vaga - 1 < 0) {
+		if (vaga - 1 >= placas.length || vaga - 1 < 0) {
 			throw new Exception("Vaga não Existe");
 		} else if (placas[vaga - 1] == (null)) {
 			throw new Exception("Vaga já desocupada");
@@ -58,7 +58,7 @@ public class Estacionamento {
 	}
 
 	public void transferir(int vaga1, int vaga2) throws Exception {
-		if (((vaga1 - 1 < 0) || (vaga2 - 1 < 0)) || ((vaga1 - 1 > placas.length) || (vaga2 - 1 > placas.length))) {
+		if (((vaga1 - 1 < 0) || (vaga2 - 1 < 0)) || ((vaga1 - 1 >= placas.length) || (vaga2 - 1 >= placas.length))) {
 			throw new Exception("Vaga não Existe");
 		} else if (!(placas[vaga2 - 1] == (null))) {
 			throw new Exception("Vaga de destino já ocupada");
@@ -85,7 +85,7 @@ public class Estacionamento {
 	public ArrayList<Integer> listarLivres() {
 		ArrayList<Integer> vagasLivres = new ArrayList<>();
 		for (int i = 0; i < placas.length; i++) {
-			if (!(placas[i] == (null))) {
+			if ((placas[i] == (null))) {
 				vagasLivres.add(i + 1);
 			}
 		}
