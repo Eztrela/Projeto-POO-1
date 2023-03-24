@@ -12,7 +12,7 @@ public class AplicacaoConsole3 {
 		Estacionamento estacionamento = new Estacionamento(10);	//10 vagas
 		
 		try {
-			//estacionamento.lerDados();
+			estacionamento.lerDados();
 		} 
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -34,9 +34,9 @@ public class AplicacaoConsole3 {
 				System.out.println("1 - entrar carro");
 				System.out.println("2 - sair carro");
 				System.out.println("3 - consultar placa");
-				System.out.println("3 - transferir placa");
-				System.out.println("4 - listar geral");
-				System.out.println("5 - listar vagas livres");
+				System.out.println("4 - transferir placa");
+				System.out.println("5 - listar geral");
+				System.out.println("6 - listar vagas livres");
 				System.out.print("==>");
 				op = Integer.parseInt(teclado.nextLine());
 

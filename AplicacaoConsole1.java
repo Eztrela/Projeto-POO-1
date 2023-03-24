@@ -45,7 +45,7 @@ public class AplicacaoConsole1 {
 			System.out.println("gravar dados no arquivo");
 			estacionamento.gravarDados();
 			System.out.println("ler dados do arquivo");
-			//estacionamento.lerDados();
+			estacionamento.lerDados();
 			
 			System.out.println("listar vagas geral");
 			for(String s : estacionamento.listarGeral()) {
