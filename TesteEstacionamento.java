@@ -10,7 +10,7 @@ public class TesteEstacionamento {
 			est.sair(1);
 			est.entrar("MMY9324", 2);
 			est.gravarDados();
-			System.out.println(est.listarGeral()[1].equals(null));
+			System.out.println(est.listarGeral());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -19,7 +19,7 @@ public class Estacionamento {
 		} else if (!(placas[vaga - 1] == null)) {
 			throw new Exception("Vaga já ocupada");
 		}
-		try (FileWriter fileWriter = new FileWriter("C:/estudos/Porjeto-POO-1/historico.csv",
+		try (FileWriter fileWriter = new FileWriter("./store/historico.csv",
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -34,10 +34,10 @@ public class Estacionamento {
 	public void sair(int vaga) throws Exception {
 		if (vaga - 1 > placas.length || vaga - 1 < 0) {
 			throw new Exception("Vaga não Existe");
-		} else if (placas[vaga - 1].equals(null)) {
+		} else if (placas[vaga - 1] == (null)) {
 			throw new Exception("Vaga já desocupada");
 		}
-		try (FileWriter fileWriter = new FileWriter("C:/estudos/Porjeto-POO-1/historico.csv",
+		try (FileWriter fileWriter = new FileWriter("./store/historico.csv",
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -51,7 +51,7 @@ public class Estacionamento {
 
 	public int consultarPlaca(String placa) {
 		for (int i = 0; i < placa.length(); i++) {
-			if (placas[i].equals(placa))
+			if (placas[i] == (placa))
 				return i + 1;
 		}
 		return -1;
@@ -60,9 +60,9 @@ public class Estacionamento {
 	public void transferir(int vaga1, int vaga2) throws Exception {
 		if (((vaga1 - 1 < 0) || (vaga2 - 1 < 0)) || ((vaga1 - 1 > placas.length) || (vaga2 - 1 > placas.length))) {
 			throw new Exception("Vaga não Existe");
-		} else if (!(placas[vaga2 - 1].equals(null))) {
+		} else if (!(placas[vaga2 - 1] == (null))) {
 			throw new Exception("Vaga de destino já ocupada");
-		} else if (placas[vaga1 - 1].equals(null)) {
+		} else if (placas[vaga1 - 1] == (null)) {
 			throw new Exception("Vaga de origem já desocupada");
 		}
 
@@ -73,7 +73,7 @@ public class Estacionamento {
 	public String[] listarGeral() {
 		String[] listaGeral = new String[placas.length];
 		for (int i = 0; i < placas.length; i++) {
-			if (placas[i].equals(null))
+			if (placas[i] == (null))
 				listaGeral[i] = "livre";
 			else
 				listaGeral[i] = placas[i];
@@ -85,7 +85,7 @@ public class Estacionamento {
 	public ArrayList<Integer> listarLivres() {
 		ArrayList<Integer> vagasLivres = new ArrayList<>();
 		for (int i = 0; i < placas.length; i++) {
-			if (!(placas[i].equals(null))) {
+			if (!(placas[i] == (null))) {
 				vagasLivres.add(i + 1);
 			}
 		}
@@ -96,9 +96,9 @@ public class Estacionamento {
 		if (placas.length == 0) {
 			throw new Exception("Não existem dados para serem gravados");
 		}
-		for (int i = 0; i < placas.length; i++) {
+		for (int i = 0; i < placas.length - 1; i++) {
 			if (!(placas[i] == null)) {
-				FileWriter fileWriter = new FileWriter("C:/estudos/Porjeto-POO-1/placas.csv", true);
+				FileWriter fileWriter = new FileWriter("./store/placas.csv", true);
 				fileWriter.append(" Vaga: " + (i + 1) + " Placa: " + placas[i] + "\n");
 				fileWriter.flush();
 				fileWriter.close();
