@@ -60,44 +60,9 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn2, "Sair carro", 245, 100);
         btn2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+            	
+            	sairCarro(est);
                 // dialog
-                JDialog dialog2 = new JDialog(mainFrame, "Sair carro", true);
-                dialog2.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                dialog2.setResizable(false);
-                dialog2.setBounds(135, 135, 230, 230);
-
-                // dialog panel
-                JPanel panel2 = new JPanel();
-                panel2.setBackground(new Color(30, 30, 30));
-                panel2.setLayout(null);
-
-                // label for parking spot field
-                JLabel parkingSpotLabel = new JLabel("Digite o número da vaga: ");
-                parkingSpotLabel.setFont(new Font("Nunito", Font.BOLD, 14));
-                parkingSpotLabel.setForeground(new Color(240, 240, 240));
-                parkingSpotLabel.setBounds(20, 20, 170, 20);
-                panel2.add(parkingSpotLabel);
-
-                // textfield for parking spot
-                JTextField parkingSpotTextfield = new JTextField();
-                parkingSpotTextfield.setFont(new Font("Nunito Light", Font.PLAIN, 12));
-                parkingSpotTextfield.setForeground(new Color(240, 240, 240));
-                parkingSpotTextfield.setBackground(new Color(70, 70, 70));
-                parkingSpotTextfield.setBounds(20, 50, 180, 20);
-                parkingSpotTextfield.setBorder(null);
-                panel2.add(parkingSpotTextfield);
-
-                // button to confirm and call method
-                JButton confirmButton = new JButton("Confirmar");
-                confirmButton.setFont(new Font("Nunito", Font.BOLD, 10));
-                confirmButton.setForeground(new Color(240, 240, 240));
-                confirmButton.setBackground(new Color(70, 70, 70));
-                confirmButton.setBounds(75, 120, 70, 30);
-                confirmButton.setBorder(null);
-                panel2.add(confirmButton);
-
-                dialog2.add(panel2);
-                dialog2.setVisible(true);
             }
         });
         mainPanel.add(btn2);
@@ -107,44 +72,7 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn3, "Consultar placa", 145, 170);
         btn3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                // dialog
-                JDialog dialog3 = new JDialog(mainFrame, "Sair carro", true);
-                dialog3.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                dialog3.setResizable(false);
-                dialog3.setBounds(135, 135, 230, 230);
-
-                // dialog panel
-                JPanel panel3 = new JPanel();
-                panel3.setBackground(new Color(30, 30, 30));
-                panel3.setLayout(null);
-
-                // label for car license plate field
-                JLabel licensePlateLabel = new JLabel("Digite a placa do carro: ");
-                licensePlateLabel.setFont(new Font("Nunito", Font.BOLD, 14));
-                licensePlateLabel.setForeground(new Color(240, 240, 240));
-                licensePlateLabel.setBounds(20, 20, 170, 20);
-                panel3.add(licensePlateLabel);
-
-                // textfield for car license plate
-                JTextField licensePlateTextfield = new JTextField();
-                licensePlateTextfield.setFont(new Font("Nunito Light", Font.PLAIN, 12));
-                licensePlateTextfield.setForeground(new Color(240, 240, 240));
-                licensePlateTextfield.setBackground(new Color(70, 70, 70));
-                licensePlateTextfield.setBounds(20, 50, 180, 20);
-                licensePlateTextfield.setBorder(null);
-                panel3.add(licensePlateTextfield);
-
-                // button to confirm and call method
-                JButton confirmButton = new JButton("Confirmar");
-                confirmButton.setFont(new Font("Nunito", Font.BOLD, 10));
-                confirmButton.setForeground(new Color(240, 240, 240));
-                confirmButton.setBackground(new Color(70, 70, 70));
-                confirmButton.setBounds(75, 120, 70, 30);
-                confirmButton.setBorder(null);
-                panel3.add(confirmButton);
-
-                dialog3.add(panel3);
-                dialog3.setVisible(true);
+            
             }
         });
         mainPanel.add(btn3);
@@ -296,9 +224,7 @@ public class InterfaceValetinho {
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
             	try {
-            		System.out.println("entrei aqui parceiro");
 					est.entrar(licensePlateTextfield.getText(), Integer.parseInt(parkingSpotTextfield.getText()));
-					System.out.println(licensePlateTextfield.getText() +" "+ parkingSpotTextfield.getText());
 					dialog1.setVisible(false);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -310,6 +236,112 @@ public class InterfaceValetinho {
         dialog1.add(panel1);
         dialog1.setVisible(true);
     }
+    
+    public void sairCarro(Estacionamento est) {
+    	JDialog dialog2 = new JDialog(mainFrame, "Sair carro", true);
+        dialog2.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        dialog2.setResizable(false);
+        dialog2.setBounds(135, 135, 230, 230);
+
+        // dialog panel
+        JPanel panel2 = new JPanel();
+        panel2.setBackground(new Color(30, 30, 30));
+        panel2.setLayout(null);
+
+        // label for parking spot field
+        JLabel parkingSpotLabel = new JLabel("Digite o número da vaga: ");
+        parkingSpotLabel.setFont(new Font("Nunito", Font.BOLD, 14));
+        parkingSpotLabel.setForeground(new Color(240, 240, 240));
+        parkingSpotLabel.setBounds(20, 20, 170, 20);
+        panel2.add(parkingSpotLabel);
+
+        // textfield for parking spot
+        JTextField parkingSpotTextfield = new JTextField();
+        parkingSpotTextfield.setFont(new Font("Nunito Light", Font.PLAIN, 12));
+        parkingSpotTextfield.setForeground(new Color(240, 240, 240));
+        parkingSpotTextfield.setBackground(new Color(70, 70, 70));
+        parkingSpotTextfield.setBounds(20, 50, 180, 20);
+        parkingSpotTextfield.setBorder(null);
+        panel2.add(parkingSpotTextfield);
+
+        // button to confirm and call method
+        JButton confirmButton = new JButton("Confirmar");
+        confirmButton.setFont(new Font("Nunito", Font.BOLD, 10));
+        confirmButton.setForeground(new Color(240, 240, 240));
+        confirmButton.setBackground(new Color(70, 70, 70));
+        confirmButton.setBounds(75, 120, 70, 30);
+        confirmButton.setBorder(null);
+        panel2.add(confirmButton);
+        confirmButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+            	try {
+					est.sair(Integer.parseInt(parkingSpotTextfield.getText()));
+					dialog2.setVisible(false);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				}
+            }
+        });
+
+        dialog2.add(panel2);
+        dialog2.setVisible(true);
+    }
+    
+    public void consultarPlaca(Estacionamento est) {
+    	
+                // dialog
+                JDialog dialog3 = new JDialog(mainFrame, "Sair carro", true);
+                dialog3.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                dialog3.setResizable(false);
+                dialog3.setBounds(135, 135, 230, 230);
+
+                // dialog panel
+                JPanel panel3 = new JPanel();
+                panel3.setBackground(new Color(30, 30, 30));
+                panel3.setLayout(null);
+
+                // label for car license plate field
+                JLabel licensePlateLabel = new JLabel("Digite a placa do carro: ");
+                licensePlateLabel.setFont(new Font("Nunito", Font.BOLD, 14));
+                licensePlateLabel.setForeground(new Color(240, 240, 240));
+                licensePlateLabel.setBounds(20, 20, 170, 20);
+                panel3.add(licensePlateLabel);
+
+                // textfield for car license plate
+                JTextField licensePlateTextfield = new JTextField();
+                licensePlateTextfield.setFont(new Font("Nunito Light", Font.PLAIN, 12));
+                licensePlateTextfield.setForeground(new Color(240, 240, 240));
+                licensePlateTextfield.setBackground(new Color(70, 70, 70));
+                licensePlateTextfield.setBounds(20, 50, 180, 20);
+                licensePlateTextfield.setBorder(null);
+                panel3.add(licensePlateTextfield);
+
+                // button to confirm and call method
+                JButton confirmButton = new JButton("Confirmar");
+                confirmButton.setFont(new Font("Nunito", Font.BOLD, 10));
+                confirmButton.setForeground(new Color(240, 240, 240));
+                confirmButton.setBackground(new Color(70, 70, 70));
+                confirmButton.setBounds(75, 120, 70, 30);
+                confirmButton.setBorder(null);
+                panel3.add(confirmButton);
+                confirmButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                    	try {
+        					est.consultarPlaca(null);
+        					dialog3.setVisible(false);
+        				} catch (Exception e1) {
+        					// TODO Auto-generated catch block
+        					System.out.println(e1.getMessage());
+        				}
+                    }
+                });
+
+                dialog3.add(panel3);
+                dialog3.setVisible(true);
+            }
+        
+    
     
 
 }
