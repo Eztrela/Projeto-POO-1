@@ -72,7 +72,7 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn3, "Consultar placa", 145, 170);
         btn3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-            
+            	consultarPlaca(est);
             }
         });
         mainPanel.add(btn3);
@@ -328,7 +328,7 @@ public class InterfaceValetinho {
                 confirmButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                     	try {
-        					est.consultarPlaca(null);
+        					est.consultarPlaca(licensePlateTextfield.getText());
         					dialog3.setVisible(false);
         				} catch (Exception e1) {
         					// TODO Auto-generated catch block
