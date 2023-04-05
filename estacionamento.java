@@ -19,16 +19,15 @@ public class Estacionamento {
 	public void entrar(String placa, int vaga) throws Exception {
 		if (vaga > placas.length || vaga <= 0) {
 			throw new Exception("Vaga não Existe");
-		} else if (!(placas[vaga - 1] == null)) {
+		} else if (placas[vaga - 1] != null) {
 			throw new Exception("Vaga já ocupada");
 		}
 		try (FileWriter fileWriter = new FileWriter(new File("./store/historico.csv"),
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-			fileWriter.append(localDateTime.format(formatter) + ";" + vaga + ";" + placa
+			fileWriter.write(localDateTime.format(formatter) + ";" + vaga + ";" + placa
 					+ ";" + " Entrada" + "\n");
-			fileWriter.flush();
 			fileWriter.close();
 		}
 		placas[vaga - 1] = placa;
@@ -44,9 +43,8 @@ public class Estacionamento {
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-			fileWriter.append(localDateTime.format(formatter) + ";" + vaga + ";"
+			fileWriter.write(localDateTime.format(formatter) + ";" + vaga + ";"
 					+ placas[vaga - 1] + ";" + " Saida" + "\n");
-			fileWriter.flush();
 			fileWriter.close();
 		}
 		placas[vaga - 1] = null;
@@ -96,32 +94,34 @@ public class Estacionamento {
 	}
 
 	public void gravarDados() throws Exception {
-		if (placas.length == 0) {
-			throw new Exception("Não existem dados para serem gravados");
-		}
-		FileWriter fileWriter = new FileWriter(new File("./store/placas.csv"), true);
+			
+		FileWriter fileWriter = new FileWriter(new File("./store/placas.csv"));
 		for (int i = 0; i < placas.length - 2; i++) {
 			if (!(placas[i] == null)) {
-				fileWriter.append((i + 1) + ";" + placas[i] + "\n");
+				fileWriter.write((i + 1) + ";" + placas[i] + "\n");
+			}else if(i == placas.length -1) {
+				
+				fileWriter.write((placas.length) + ";" + placas[placas.length - 1]);
 			}
 		}
-		fileWriter.append((placas.length) + ";" + placas[placas.length - 1]);
+		fileWriter.flush();
 		fileWriter.close();
+		
 
 	}
 	
 	public void lerDados() throws Exception{
-		Scanner arquivo = new Scanner(new File("./store/placas.csv"));
-		ArrayList<Integer> livres = this.listarLivres();
-		while (arquivo.hasNextLine()) {
-			String[] salvo = arquivo.nextLine().split(";");
-			if(livres.contains(Integer.parseInt(salvo[0]))) {
-				this.entrar(salvo[1], Integer.parseInt(salvo[0]));
-			}else {
-				this.sair(Integer.parseInt(salvo[0]));
-				this.entrar(salvo[1], Integer.parseInt(salvo[0]));
+		File salvos = new File("./store/placas.csv");
+		if(salvos.exists()) {
+			
+			Scanner arquivo = new Scanner(new File("./store/placas.csv"));
+			while (arquivo.hasNextLine()) {
+				String[] salvo = arquivo.nextLine().split(";");
+				placas[Integer.parseInt(salvo[0]) - 1] = salvo[1]; 
+				
+				
 			}
+			arquivo.close();
 		}
-		arquivo.close();
 	}
 }

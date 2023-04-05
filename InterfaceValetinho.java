@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,6 +30,7 @@ public class InterfaceValetinho {
     public InterfaceValetinho() throws Exception{
         // main frame
     	est = new Estacionamento(10);
+    	est.lerDados();
         mainFrame = new JFrame("Valet");
         mainFrame.setResizable(false);
 
@@ -153,6 +155,19 @@ public class InterfaceValetinho {
         // button 7
         btn7 = new JButton();
         this.setButtonStyle(btn7, "Encerrar", 195, 310);
+        btn7.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+            	try {
+            		
+            		est.gravarDados();
+            		mainFrame.dispose();
+            	}catch (Exception e1){
+            		JOptionPane.showMessageDialog(null,e1.getMessage());
+            		mainFrame.dispose();
+            	}
+                // dialog
+            }
+        });
         mainPanel.add(btn7);
 
         mainFrame.add(mainPanel);
