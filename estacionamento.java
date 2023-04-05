@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Estacionamento {
@@ -52,7 +53,7 @@ public class Estacionamento {
 
 	public int consultarPlaca(String placa) {
 		for (int i = 0; i < placas.length; i++) {
-			if (placas[i] == placa)
+			if (Objects.equals(placas[i], placa))
 				return i + 1;
 		}
 		return -1;

@@ -344,6 +344,7 @@ public class InterfaceValetinho {
                     public void actionPerformed(ActionEvent e){
                     	try {
         					est.consultarPlaca(licensePlateTextfield.getText());
+        					JOptionPane.showMessageDialog(dialog3, est.consultarPlaca(licensePlateTextfield.getText()));
         					dialog3.setVisible(false);
         				} catch (Exception e1) {
         					// TODO Auto-generated catch block
