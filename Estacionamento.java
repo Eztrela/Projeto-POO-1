@@ -23,7 +23,7 @@ public class Estacionamento {
 		} else if (placas[vaga - 1] != null) {
 			throw new Exception("Vaga já ocupada");
 		}
-		try (FileWriter fileWriter = new FileWriter(new File("./store/historico.csv"),
+		try (FileWriter fileWriter = new FileWriter(new File("./historico.csv"),
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -40,7 +40,7 @@ public class Estacionamento {
 		} else if (placas[vaga - 1] == (null)) {
 			throw new Exception("Vaga já desocupada");
 		}
-		try (FileWriter fileWriter = new FileWriter(new File("./store/historico.csv"),
+		try (FileWriter fileWriter = new FileWriter(new File("./historico.csv"),
 				true)) {
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -96,7 +96,7 @@ public class Estacionamento {
 
 	public void gravarDados() throws Exception {
 			
-		FileWriter fileWriter = new FileWriter(new File("./store/placas.csv"));
+		FileWriter fileWriter = new FileWriter(new File("./placas.csv"));
 		for (int i = 0; i < placas.length - 2; i++) {
 			if (!(placas[i] == null)) {
 				fileWriter.write((i + 1) + ";" + placas[i] + "\n");
@@ -112,10 +112,10 @@ public class Estacionamento {
 	}
 	
 	public void lerDados() throws Exception{
-		File salvos = new File("./store/placas.csv");
+		File salvos = new File("./placas.csv");
 		if(salvos.exists()) {
 			
-			Scanner arquivo = new Scanner(new File("./store/placas.csv"));
+			Scanner arquivo = new Scanner(new File("./placas.csv"));
 			while (arquivo.hasNextLine()) {
 				String[] salvo = arquivo.nextLine().split(";");
 				placas[Integer.parseInt(salvo[0]) - 1] = salvo[1]; 

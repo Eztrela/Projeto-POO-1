@@ -29,9 +29,13 @@ public class InterfaceValetinho {
 
 
     public InterfaceValetinho() throws Exception{
+        initialize();
+    }
+
+    public void initialize() throws Exception {
         // main frame
-    	est = new Estacionamento(10);
-    	est.lerDados();
+        est = new Estacionamento(10);
+        est.lerDados();
         mainFrame = new JFrame("Valet");
         mainFrame.setResizable(false);
 
@@ -63,8 +67,8 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn2, "Sair carro", 245, 100);
         btn2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-            	
-            	sairCarro(est);
+
+                sairCarro(est);
                 // dialog
             }
         });
@@ -75,7 +79,7 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn3, "Consultar placa", 145, 170);
         btn3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-            	consultarPlaca(est);
+                consultarPlaca(est);
             }
         });
         mainPanel.add(btn3);
@@ -104,9 +108,9 @@ public class InterfaceValetinho {
         btn6 = new JButton();
         this.setButtonStyle(btn6, "Listar vagas livres", 245, 240);
         btn6.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		listaLivres(est);
-        	}
+            public void actionPerformed(ActionEvent e) {
+                listaLivres(est);
+            }
         });
         mainPanel.add(btn6);
 
@@ -115,14 +119,14 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn7, "Encerrar", 195, 310);
         btn7.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-            	try {
-            		
-            		est.gravarDados();
-            		mainFrame.dispose();
-            	}catch (Exception e1){
-            		JOptionPane.showMessageDialog(null,e1.getMessage());
-            		mainFrame.dispose();
-            	}
+                try {
+
+                    est.gravarDados();
+                    mainFrame.dispose();
+                }catch (Exception e1){
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    mainFrame.dispose();
+                }
                 // dialog
             }
         });
