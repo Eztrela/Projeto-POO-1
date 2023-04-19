@@ -56,7 +56,6 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn1, "Entrar carro", 145, 100);
         btn1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                // dialog
                 entrarCarro(est);
             }
         });
@@ -67,9 +66,7 @@ public class InterfaceValetinho {
         this.setButtonStyle(btn2, "Sair carro", 245, 100);
         btn2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-
                 sairCarro(est);
-                // dialog
             }
         });
         mainPanel.add(btn2);
@@ -120,14 +117,12 @@ public class InterfaceValetinho {
         btn7.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 try {
-
                     est.gravarDados();
                     mainFrame.dispose();
-                }catch (Exception e1){
+                } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                     mainFrame.dispose();
                 }
-                // dialog
             }
         });
         mainPanel.add(btn7);
@@ -197,16 +192,13 @@ public class InterfaceValetinho {
         confirmButton.setBounds(70, 150, 70, 30);
         confirmButton.setBorder(null);
         panel1.add(confirmButton);
-        System.out.println(licensePlateTextfield.getText() +" "+ parkingSpotTextfield.getText());
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
             	try {
 					est.entrar(licensePlateTextfield.getText(), Integer.parseInt(parkingSpotTextfield.getText()));
 					dialog1.setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(dialog1, e1.getMessage());
-					System.out.println(e1.getMessage());
+					JOptionPane.showMessageDialog(dialog1, "Vaga inválida.");
 				}
             }
         });
@@ -256,9 +248,7 @@ public class InterfaceValetinho {
 					est.sair(Integer.parseInt(parkingSpotTextfield.getText()));
 					dialog2.setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(dialog2, e1.getMessage());
-					System.out.println(e1.getMessage());
+					JOptionPane.showMessageDialog(dialog2, "Vaga inválida.");
 				}
             }
         });
@@ -268,7 +258,6 @@ public class InterfaceValetinho {
     }
     
     public void consultarPlaca(Estacionamento est) {
-    	
                 // dialog
                 JDialog dialog3 = new JDialog(mainFrame, "Consulta Placa", true);
                 dialog3.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -307,13 +296,15 @@ public class InterfaceValetinho {
                 confirmButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                     	try {
-        					est.consultarPlaca(licensePlateTextfield.getText());
-        					JOptionPane.showMessageDialog(dialog3, est.consultarPlaca(licensePlateTextfield.getText()));
-        					dialog3.setVisible(false);
+                            int result = est.consultarPlaca(licensePlateTextfield.getText());
+                            if (result == -1) {
+                                JOptionPane.showMessageDialog(dialog3, "Placa inexistente.");
+                            } else {
+                                JOptionPane.showMessageDialog(dialog3, Integer.toString(result));
+                            }
+                            dialog3.setVisible(false);
         				} catch (Exception e1) {
-        					// TODO Auto-generated catch block
         					JOptionPane.showMessageDialog(dialog3, e1.getMessage());
-        					System.out.println(e1.getMessage());
         				}
                     }
                 });
@@ -382,9 +373,7 @@ public class InterfaceValetinho {
 					est.transferir(placa1, placa2);
 					dialog4.setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(dialog4, e1.getMessage());
-					System.out.println(e1.getMessage());
 				}
             }
         });
@@ -426,9 +415,7 @@ public class InterfaceValetinho {
             	try {
 					dialog5.setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(dialog5, e1.getMessage());
-					System.out.println(e1.getMessage());
 				}
             }
         });
@@ -470,13 +457,11 @@ public class InterfaceValetinho {
             	try {
 					dialog6.setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(dialog6, e1.getMessage());
-					System.out.println(e1.getMessage());
 				}
             }
         });
-        
+
         dialog6.add(panel6);
         dialog6.setVisible(true);
     }
