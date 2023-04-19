@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Dialog;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,6 +25,18 @@ public class InterfaceValetinho {
     JButton btn7;
     Estacionamento est;
 
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    InterfaceValetinho window = new InterfaceValetinho();
+                    window.mainFrame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     public InterfaceValetinho() throws Exception{
         initialize();
