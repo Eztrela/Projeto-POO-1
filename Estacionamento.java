@@ -95,7 +95,7 @@ public class Estacionamento {
 	public void gravarDados() throws Exception {
 			
 		FileWriter fileWriter = new FileWriter(new File("./placas.csv"));
-		for (int i = 0; i < placas.length - 2; i++) {
+		for (int i = 0; i < placas.length; i++) {
 			if (!(placas[i] == null)) {
 				fileWriter.write((i + 1) + ";" + placas[i] + "\n");
 			}else if(i == placas.length -1) {
