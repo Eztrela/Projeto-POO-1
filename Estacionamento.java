@@ -92,16 +92,22 @@ public class Estacionamento {
 		return vagasLivres;
 	}
 
-	public void gravarDados() throws Exception {
-			
+	public void gravarDados() throws Exception {		
 		FileWriter fileWriter = new FileWriter(new File("./placas.csv"));
-		for (int i = 0; i < placas.length - 2; i++) {
+		for (int i = 0; i < placas.length; i++) {
 			if (!(placas[i] == null)) {
-				fileWriter.write((i + 1) + ";" + placas[i] + "\n");
-			}else if(i == placas.length -1) {
 				
-				fileWriter.write((placas.length) + ";" + placas[placas.length - 1]);
-			}
+				if(i == placas.length - 1) {
+					
+					fileWriter.write((placas.length) + ";" + placas[placas.length - 1]);
+				} else {
+					fileWriter.write((i + 1) + ";" + placas[i] + "\n");
+				}
+				
+		
+			} 
+			
+			
 		}
 		fileWriter.flush();
 		fileWriter.close();
